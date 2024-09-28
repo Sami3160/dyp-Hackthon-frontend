@@ -1,0 +1,134 @@
+/* Hide unwanted elements */
+.rdrDefinedRangesWrapper {
+    display: none;
+}
+
+/* Customize calendar container */
+.rdrCalendarWrapper {
+    border: 3px solid #C9B55B;
+    font-size:medium;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.rdrMonthAndYearWrapper{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top:0;
+}
+
+.rdrStartEdge{
+    color:red;
+}
+
+/* Customize header */
+.rdrMonthName {
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+}
+.rdrMonth{
+    padding: 0% !important;
+    padding-bottom: 1% !important;
+}
+
+.rdrMonthAndYearPickers {
+    display: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* .rdrNextPrevButton {
+    display: none;
+} */
+
+/* Customize days */
+.rdrDayNumber span {
+    color: #000000;
+    height: calc(100% / 7) em !important;
+
+    /* height: 15px !important; */
+    /* width: 15px !important; */
+}
+.rdrDayNumber span:after {
+    border-radius: 1.042em !important;
+    /* background-color: azure; */
+    border-bottom: none !important;
+}
+
+.rdrDayDisabled span {
+    color: #ccc;
+
+}
+.rdrWeekDays span{
+    background-color: #D9D9D9 !important;
+    color: black !important;
+    font-weight: 400;
+    /* height: 4.2  em; */
+}
+
+
+.rdrDaySelected span{
+    background-color: #C9B55B !important;
+}
+
+.rdrDayToday span::after {
+    border-radius: 1.042em !important;
+    /* background-color: azure; */
+    border-bottom: none !important;
+}   
+.rdrDayToday span:after{
+    /* background-color:white !important; */
+    /* background: transparent; */
+    border-radius: none !important;
+
+}
+
+
+.rdrDayToday .rdrDayNumber span::after{
+    height: 0px;
+}
+/* Customize the day hover */
+.rdrStartEdge, .rdrEndEdge  {
+    border-radius: 1.042em !important;
+    background-color: #C9B55B !important;
+    color: black !important;
+    
+    /* color: white; */
+}
+.rdrDayNumber span{
+    color: black !important;
+}
+.rdrDayHovered {
+    color: black !important;
+    outline: 0px;
+    border-radius: 1.042em !important;
+
+}
+.rdrDayStartPreview, .rdrDayEndPreview,.rdrDayInPreview{
+    color: black !important;
+    /* border: none; */
+    /* border:solid 1px #C9B55B !important; */
+    border-color: #C9B55B !important;
+}
+
+.rdrDay {
+    height: 4em  !important;
+    width: calc(100% / 7);
+    color: black !important;
+    border-color: #C9B55B !important;
+}
+.rdrInRange{
+    background-color: #D9D9D9 !important;
+    border-radius: 1.042em !important;
+
+    color: black !important;
+
+}
+
+/* Hide the date display at the top */
+.rdrDateDisplayWrapper {
+    display: none;
+}

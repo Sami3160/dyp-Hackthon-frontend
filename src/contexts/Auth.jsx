@@ -1,7 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { Token } from '@mui/icons-material';
 
 const AuthContext = createContext();
 
@@ -36,11 +34,9 @@ const AuthProvider = ({ children }) => {
   const addEvent = async (id) => {
     try {
       await axios.post('http://localhost:4000/create-event-booking');
-      toast.success("Added ");
       initializeAuth();
     } catch (error) {
       console.error('Failed to add to cart:', error);
-      toast.error('Failed to add to cart.');
     }
   };
 
@@ -55,11 +51,12 @@ const AuthProvider = ({ children }) => {
           password:password
       });
       const { user, token } = response.data;
+      console.log(response)
       console.log(response.data)
       setAuth({ user, token });
       localStorage.setItem('token', token);
+      
       // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      toast.success('Login successful.');
       // return "success"
       return {status:"success",message:"Login Successful"}
     } catch (error) {
@@ -91,12 +88,10 @@ const AuthProvider = ({ children }) => {
       // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       alert("Signup Successful")
       return "success"
-      // toast.success('Sign up successful.');
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Sign up failed. Please try again.';
       // setServerError(errorMessage);
       alert(errorMessage)
-      // toast.error(errorMessage);
       return "error";
     }
   };
@@ -105,7 +100,6 @@ const AuthProvider = ({ children }) => {
     setAuth({ user: null, token: null });
     localStorage.removeItem('token');
     // delete axios.defaults.headers.common['Authorization'];
-    toast.success('Logged out successfully.');
   };
 
   return (

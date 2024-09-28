@@ -5,7 +5,9 @@ import './index.css'
 import 'react-calendar/dist/Calendar.css';
 import Navbar from './components/Navbar.jsx'
 import AuthProvider from './contexts/Auth.jsx'
-import { ToastContainer } from 'react-toastify'
+import CalenderView from './view/CalenderView.jsx'
+import Dashboard from './view/Dashboard.jsx'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -27,7 +29,14 @@ const router = createBrowserRouter([
     path:"/signup",
     element:<Signup/>
   }
-  
+  ,{
+    path:"/dashboard",
+    element:<Dashboard/>
+  }
+  ,{
+    path:"/events",
+    element:<CalenderView/>
+  }
   ,{
     path:"*",
     element:<h1>404 :Wrong path!</h1>
@@ -39,7 +48,6 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
 
     <RouterProvider router={router} />
-    <ToastContainer/>
     </AuthProvider>
   </StrictMode>,
 )

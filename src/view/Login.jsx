@@ -19,9 +19,13 @@ function Login() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-    const a=login(email, password);
-    if(a.status==="error")alert(a.message)
-      navigate("/")
+    const a = login(email, password);
+    if (a.status == "error") {
+      alert(a.message)
+    } else {
+      navigate("/events")
+      console.log("Login Successful")
+    }
   };
 
   useEffect(() => {
@@ -34,7 +38,7 @@ function Login() {
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-purple-200">
       <h2 className="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 mb-10">Sign in to your account</h2>
       <div className="flex justify-center items-center gap-20 bg-white rounded-xl">
-        <img src="https://www.creative-tim.com/twcomponents/svg/secure-login-animate.svg" className='w-[40%] hidden md:block' alt=""/>
+        <img src="https://www.creative-tim.com/twcomponents/svg/secure-login-animate.svg" className='w-[40%] hidden md:block' alt="" />
 
         <div className="h-[60vh] md:h-[100%] relative flex flex-col p-4 rounded-md text-black bg-white w-full md:w-[40%]">
           <div className="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">Welcome back to <span className="text-[#7747ff]">App</span></div>
