@@ -19,7 +19,9 @@ function Login() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-    login(email, password, setServerError);
+    const a=login(email, password);
+    if(a.status==="error")alert(a.message)
+      navigate("/")
   };
 
   useEffect(() => {
@@ -43,8 +45,8 @@ function Login() {
             </div>
           )}
           <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-            <div className="block relative">
-              <label htmlFor="email" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
+            <div className="block relative h-auto">
+              <label htmlFor="email" className="h-auto block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
               <input
                 id="email"
                 className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
@@ -52,12 +54,12 @@ function Login() {
               />
               {errors.email && <div className="text-red-600 text-sm mt-1">{errors.email.message}</div>}
             </div>
-            <div className="block relative">
-              <label htmlFor="password" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Password</label>
+            <div className="block relative h-auto">
+              <label htmlFor="password" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2 h-auto">Password</label>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
-                className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+                className=" h-auto rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
                 {...register('password', { required: 'Password is required' })}
               />
               {showPassword ? (

@@ -35,9 +35,10 @@ const StartButton = () => {
   const navigate=useNavigate()
   const {auth, login}=useAuth();
   const handleClick=()=>{
-
+    console.log(localStorage.getItem('token'))
     // alert("hello")
-    if(!(auth?.token)){
+    if(!(auth?.token) || localStorage.getItem('token')){
+    
       // alert("hello")
       navigate('/login')
     }
