@@ -5,6 +5,7 @@
 
 /* Customize calendar container */
 .rdrCalendarWrapper {
+    width: full;
     border: 3px solid #C9B55B;
     font-size:medium;
     border-radius: 10px;

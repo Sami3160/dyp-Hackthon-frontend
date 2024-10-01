@@ -7,7 +7,7 @@ import Navbar from './components/Navbar.jsx'
 import AuthProvider from './contexts/Auth.jsx'
 import CalenderView from './view/CalenderView.jsx'
 import Dashboard from './view/Dashboard.jsx'
-
+import ResponsiveAppBar from './view/ResponsiveAppBar.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -46,7 +46,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     
     <AuthProvider>
-
     <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>,

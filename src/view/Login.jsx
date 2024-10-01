@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../contexts/Auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import Footer from './Footer';
+import ResponsiveAppBar from "./ResponsiveAppBar";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,24 +21,33 @@ function Login() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-    const a = login(email, password);
+    const a = await login(email, password);
     if (a.status == "error") {
       alert(a.message)
     } else {
-      navigate("/events")
+      console.log(a)
+      console.log("hjshs")
+      if(a.role=="admin"){
+        navigate("/dashboard")
+        localStorage.setItem("role","admin")
+
+      }else{  
+        navigate("/events")
+      }
       console.log("Login Successful")
     }
   };
 
-  useEffect(() => {
-    if (auth?.token) {
-      navigate('/');
-    }
-  }, [auth, navigate]);
+  // useEffect(() => {
+  //   if (auth?.token) {
+  //     navigate('/');
+  //   }
+  // }, [auth, navigate]);
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-purple-200">
-      <h2 className="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 mb-10">Sign in to your account</h2>
+    <div className="flex min-h-full flex-col justify-center bg-purple-200">
+      <ResponsiveAppBar />
+      <h2 className="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 mb-10 pt-4">Sign in to your account</h2>
       <div className="flex justify-center items-center gap-20 bg-white rounded-xl">
         <img src="https://www.creative-tim.com/twcomponents/svg/secure-login-animate.svg" className='w-[40%] hidden md:block' alt="" />
 
@@ -87,6 +98,7 @@ function Login() {
           <div className="text-sm text-center mt-[1.6rem]">Don't have an account yet? <Link className="text-sm text-[#7747ff]" to="/signup">Sign up for free!</Link></div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

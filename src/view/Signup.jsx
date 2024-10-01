@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../contexts/Auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import ResponsiveAppBar from "./ResponsiveAppBar";
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
@@ -21,19 +22,26 @@ function Signup() {
     const onSubmit = async (data) => {
         const { name, email, password, role } = data;
         const a=await signUp(name, email, password, role);
-        if(a==="success")navigate("/home")
+        if(a.result=="admin"){
+            navigate("/home")
+//            localStorage.setItem("tokrn")
+            localStorage.setItem("role","admin")
+        }else if(a.result=="organizer"){
+            navigate("/dashboard")
+        }
         console.log(a)
     };
 
-    useEffect(() => {
-        if (auth?.token) {
-            navigate('/');
-        }
-    }, [auth, navigate]);
+    // useEffect(() => {
+    //     if (auth?.token) {
+    //         navigate('/');
+    //     }
+    // }, [auth, navigate]);
 
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-purple-200">
-            <h2 className="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 mb-10">Create your account</h2>
+        <div className="flex min-h-full flex-col justify-center bg-purple-200">
+            <ResponsiveAppBar />
+            <h2 className="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 mb-10 pt-4">Create your account</h2>
             <div className="flex justify-center items-center gap-20 bg-white rounded-xl">
                 <img src="https://www.creative-tim.com/twcomponents/svg/secure-login-animate.svg" className='w-[40%] hidden md:block' alt="" />
 

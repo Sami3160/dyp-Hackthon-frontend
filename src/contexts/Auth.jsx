@@ -19,7 +19,8 @@ const AuthProvider = ({ children }) => {
         console.log(response.data)
 
         setAuth({ user: response.data, token });
-        document.localStorage="token="+response.data.id
+        // document.localStorage="token="+response.data.id
+        localStorage.setItem('token', response.data.id);
       } catch (error) {
         console.error('Failed to fetch user info:', error);
         localStorage.removeItem('token');
@@ -54,11 +55,13 @@ const AuthProvider = ({ children }) => {
       console.log(response)
       console.log(response.data)
       setAuth({ user, token });
-      localStorage.setItem('token', token);
+      // localStorage.setItem('token', token);
+      localStorage.setItem('token', response.data.id);
+
       
       // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // return "success"
-      return {status:"success",message:"Login Successful"}
+      return {status:"success",message:"Login Successful",role:response.data.role}
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Login failed. Please try again.';
       // setServerError(errorMessage);
@@ -87,7 +90,7 @@ const AuthProvider = ({ children }) => {
       
       // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       alert("Signup Successful")
-      return "success"
+      return {result:"success",role:response.data.role}
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Sign up failed. Please try again.';
       // setServerError(errorMessage);
